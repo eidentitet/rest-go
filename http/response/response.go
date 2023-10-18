@@ -35,8 +35,10 @@ func (response *Response) SetPayload(data any) *Response {
 // SetError sets the error code and message. It is used before
 // calling Error(statusCode)
 func (response *Response) SetError(code int, message string) *Response {
-	response.Payload.Error.ErrorCode = code
-	response.Payload.Error.ErrorMessage = message
+	response.Payload.Error = &chttp.Error{
+		ErrorCode:    code,
+		ErrorMessage: message,
+	}
 	return response
 }
 
