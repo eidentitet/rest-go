@@ -5,6 +5,7 @@ go 1.19
 require (
 	github.com/auth0/go-jwt-middleware/v2 v2.0.1
 	github.com/golang-jwt/jwt v3.2.2+incompatible
+	github.com/gorilla/context v1.1.1
 	github.com/gorilla/mux v1.8.0
 	github.com/kkyr/fig v0.3.0
 	github.com/patrickmn/go-cache v2.1.0+incompatible
