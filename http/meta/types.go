@@ -16,7 +16,7 @@ type Route struct {
 type Payload struct {
 	Success bool        `json:"success,omitempty"`
 	Data    interface{} `json:"data,omitempty"`
-	Error   Error       `json:"error,omitempty"`
+	Error   *Error       `json:"error,omitempty"`
 }
 
 type Error struct {
