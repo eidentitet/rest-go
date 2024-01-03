@@ -56,12 +56,12 @@ func GetJwtValidator(appConfig *configuration.AppConfiguration) *jwtmiddleware.J
 	}
 
 	// Set up the middleware.
-	middleware := jwtmiddleware.New(
+	interceptor := jwtmiddleware.New(
 		jwtValidator.ValidateToken,
 		jwtmiddleware.WithCredentialsOptional(false),
 		jwtmiddleware.WithErrorHandler(ErrorHandler),
 	)
-	return middleware
+	return interceptor
 }
 
 func ErrorHandler(w http.ResponseWriter, r *http.Request, err error) {

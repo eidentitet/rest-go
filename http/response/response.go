@@ -56,7 +56,7 @@ func ParseBody(body io.ReadCloser, parameters interface{}) error {
 	// respond to the client with the error message and a 400 status code.
 	err := json.NewDecoder(body).Decode(&parameters)
 	if err != nil {
-		return fmt.Errorf("Failed to parse json body: %s", err.Error())
+		return fmt.Errorf("failed to parse json body: %s", err.Error())
 	}
 
 	return nil

@@ -17,7 +17,7 @@ type (
 	Server struct {
 		GracefulTimeout time.Duration `fig:"gracefulTimeout" default:"5s"`
 		Name            string        `fig:"name"`
-		Addr            string        `fig:"addr" default:":8443"`
+		Addr            string        `fig:"addr" default:":8080"`
 		TLS             bool          `fig:"tls"`
 	}
 )
