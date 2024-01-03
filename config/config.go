@@ -12,7 +12,6 @@ import (
 )
 
 const (
-	ConfigCacheKey   string = "appConfigCacheKey"
 	internalCacheKey string = "internalConfigCacheKey"
 )
 

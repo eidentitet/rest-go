@@ -15,7 +15,7 @@ func init() {
 	once.Do(func() {
 		log.Println("Creating cache..")
 		if Cache == nil {
-			Cache = memCache.New(10*time.Minute, 5*time.Minute)
+			Cache = memCache.New(10*time.Minute, 5*time.Second)
 		}
 	})
 }

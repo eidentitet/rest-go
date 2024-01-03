@@ -15,13 +15,8 @@ type ApiHandler struct {
 	Routes  []chttp.Route
 	Mux     *mux.Router
 	Version string
-	//Config
+	Prefix  string
 }
-
-//type Config struct {
-//	OpenID OpenID `fig:"openid" validate:"required"`
-//	Server Server `fig:"server" validate:"required"`
-//}
 
 func (api ApiHandler) Start() {
 	appConfig := configuration.GetAppConfig()
@@ -44,7 +39,7 @@ func (api ApiHandler) Start() {
 	case false:
 		srv := &http.Server{
 			Addr: appConfig.Server.Addr,
-			// Good practice to set timeouts to avoid Slowloris attacks.
+			// Good practice to set timeouts to avoid Slow loris attacks.
 			WriteTimeout: appConfig.Server.GracefulTimeout,
 			ReadTimeout:  appConfig.Server.GracefulTimeout,
 			IdleTimeout:  time.Second * 60,
@@ -63,7 +58,7 @@ func (api ApiHandler) Start() {
 func (api ApiHandler) buildPostRoutes() {
 	pluginManager := middleware.GetMiddlewareManager()
 	for _, route := range api.Routes {
-		apiVx := api.Mux.PathPrefix("/api/" + api.Version).Subrouter()
+		apiVx := api.Mux.PathPrefix(api.Prefix + api.Version).Subrouter()
 		middlewares, _ := pluginManager.GetMiddleware(route.Middlewares...)
 		apiVx.Use(middlewares...)
 		apiVx.HandleFunc(route.Path, route.Handler).Methods(route.Method).Name(route.Name)
